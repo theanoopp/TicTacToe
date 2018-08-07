@@ -19,5 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(new Intent(MainActivity.this,GameActivity.class));
         finish();
+
+
+
     }
 }
