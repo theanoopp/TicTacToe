@@ -22,19 +22,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private Boolean player1Chance = true;//true means p1 chance false means p2 chance P1=X,P2=O//
 
-    private List<String> pList1 = new ArrayList<>();
+    private ArrayList<String> pList1 = new ArrayList<>();
 
-    private List<String> pList2 = new ArrayList<>();
+    private ArrayList<String> pList2 = new ArrayList<>();
 
     private Boolean p1WinStatus = false;
 
     private Boolean p2WinStatus = false;
 
     private int count = 0;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +72,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.b1 : buttonClicked(button1,"1");break;
+            case R.id.b1: buttonClicked(button1,"1");break;
             case R.id.b2 : buttonClicked(button2,"2");break;
             case R.id.b3 : buttonClicked(button3,"3");break;
             case R.id.b4 : buttonClicked(button4,"4");break;
@@ -153,7 +149,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         count++;
 
-
         if(player1Chance){
 
             pList1.add(value);
@@ -223,31 +218,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Boolean isWinner = false;
 
-        List<String> set1 = Arrays.asList("1","2","3");
-        List<String> set2 = Arrays.asList("4","5","6");
-        List<String> set3 = Arrays.asList("7","8","9");
-        List<String> set4 = Arrays.asList("1","4","7");
-        List<String> set5 = Arrays.asList("2","5","8");
-        List<String> set6 = Arrays.asList("3","6","9");
-        List<String> set7 = Arrays.asList("1","5","9");
-        List<String> set8 = Arrays.asList("3","5","7");
-
-
-        if(pList.containsAll(set1)){
+        if(pList.containsAll(Const.set1)){
             isWinner=true;
-        }else if(pList.containsAll(set2)){
+        }else if(pList.containsAll(Const.set2)){
             isWinner=true;
-        }else if(pList.containsAll(set3)){
+        }else if(pList.containsAll(Const.set3)){
             isWinner=true;
-        }else if(pList.containsAll(set4)){
+        }else if(pList.containsAll(Const.set4)){
             isWinner=true;
-        }else if(pList.containsAll(set5)){
+        }else if(pList.containsAll(Const.set5)){
             isWinner=true;
-        }else if(pList.containsAll(set6)){
+        }else if(pList.containsAll(Const.set6)){
             isWinner=true;
-        }else if(pList.containsAll(set7)){
+        }else if(pList.containsAll(Const.set7)){
             isWinner=true;
-        }else if(pList.containsAll(set8)){
+        }else if(pList.containsAll(Const.set8)){
             isWinner=true;
         }
 
