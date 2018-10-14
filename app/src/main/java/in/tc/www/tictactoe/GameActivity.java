@@ -32,6 +32,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private int count = 0;
 
+    private int winningSet = 0 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         button7 = findViewById(R.id.b7);
         button8 = findViewById(R.id.b8);
         button9 = findViewById(R.id.b9);
+
 
         playerInfo = findViewById(R.id.player_info);
 
@@ -63,7 +66,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         button8.setOnClickListener(this);
         button9.setOnClickListener(this);
 
-        resetButton.setOnClickListener(this);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetGame();
+            }
+        });
 
 
     }
@@ -81,7 +89,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.b7 : buttonClicked(button7,"7");break;
             case R.id.b8 : buttonClicked(button8,"8");break;
             case R.id.b9 : buttonClicked(button9,"9");break;
-            case R.id.resetBT : resetGame();
         }
 
 
@@ -94,6 +101,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         player1Chance = true;
 
         count=0;
+        winningSet = 0 ;
 
         pList1.clear();
         pList2.clear();
@@ -128,6 +136,33 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         button9.setImageResource(R.color.transparentColor);
         button9.setClickable(true);
+
+
+        View view1,view2,view3,view4,view5,view6,view7,view8;
+
+        view1 = findViewById(R.id.top_horizontal);
+        view1.setVisibility(View.INVISIBLE);
+
+        view2 = findViewById(R.id.center_horizontal);
+        view2.setVisibility(View.INVISIBLE);
+
+        view3 = findViewById(R.id.bottom_horizontal);
+        view3.setVisibility(View.INVISIBLE);
+
+        view4 = findViewById(R.id.left_vertical);
+        view4.setVisibility(View.INVISIBLE);
+
+        view5 = findViewById(R.id.center_vertical);
+        view5.setVisibility(View.INVISIBLE);
+
+        view6= findViewById(R.id.right_vertical);
+        view6.setVisibility(View.INVISIBLE);
+
+        view7 = findViewById(R.id.left_right_diagonal);
+        view7.setVisibility(View.INVISIBLE);
+
+        view8 = findViewById(R.id.right_left_diagonal);
+        view8.setVisibility(View.INVISIBLE);
 
     }
 
@@ -174,6 +209,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if(p1WinStatus){
 
+            displayStick(winningSet);
+
             WinnerDialog winnerDialog = new WinnerDialog();
             Bundle args = new Bundle();
             args.putString("winnerName",playerName1);
@@ -183,6 +220,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             endGame();
 
         }else if(p2WinStatus){
+
+            displayStick(winningSet);
 
             WinnerDialog winnerDialog = new WinnerDialog();
             Bundle args = new Bundle();
@@ -219,24 +258,66 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Boolean isWinner = false;
 
         if(pList.containsAll(Const.set1)){
+            winningSet = 1;
             isWinner=true;
         }else if(pList.containsAll(Const.set2)){
+            winningSet = 2;
             isWinner=true;
         }else if(pList.containsAll(Const.set3)){
+            winningSet = 3;
             isWinner=true;
         }else if(pList.containsAll(Const.set4)){
+            winningSet = 4;
             isWinner=true;
         }else if(pList.containsAll(Const.set5)){
+            winningSet = 5;
             isWinner=true;
         }else if(pList.containsAll(Const.set6)){
+            winningSet = 6;
             isWinner=true;
         }else if(pList.containsAll(Const.set7)){
+            winningSet = 7;
             isWinner=true;
         }else if(pList.containsAll(Const.set8)){
+            winningSet = 8;
             isWinner=true;
         }
 
         return isWinner;
 
     }
+
+    private void displayStick(int stick) {
+        View view;
+        switch (stick) {
+            case 1:
+                view = findViewById(R.id.top_horizontal);
+                break;
+            case 2:
+                view = findViewById(R.id.center_horizontal);
+                break;
+            case 3:
+                view = findViewById(R.id.bottom_horizontal);
+                break;
+            case 4:
+                view = findViewById(R.id.left_vertical);
+                break;
+            case 5:
+                view = findViewById(R.id.center_vertical);
+                break;
+            case 6:
+                view = findViewById(R.id.right_vertical);
+                break;
+            case 7:
+                view = findViewById(R.id.left_right_diagonal);
+                break;
+            case 8:
+                view = findViewById(R.id.right_left_diagonal);
+                break;
+            default://which will never happen
+                view = findViewById(R.id.top_horizontal);
+        }
+        view.setVisibility(View.VISIBLE);
+    }
+
 }

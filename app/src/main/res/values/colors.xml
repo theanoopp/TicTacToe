@@ -5,6 +5,11 @@
     <color name="colorAccent">#232b38</color>
     <color name="backgroudColor">#ff7043</color>
 
+    <color name="display_color">#dddddd</color>
+
+    <color name="stick_color">#0091ea</color>
+
+
 
 
     <color name="transparentColor">#00000000</color>
